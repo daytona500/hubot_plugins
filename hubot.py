@@ -16,12 +16,23 @@ def get_devopsborat():
     tweets = json.loads(r1.read())
     return tweets
 
+def get_mileycyrus():
+    conn = httplib.HTTPConnection("api.twitter.com")
+    conn.request("GET", "/1/statuses/user_timeline.json?screen_name=mileycyrus")
+    r1 = conn.getresponse()
+    tweets = json.loads(r1.read())
+    return tweets
+
 def process_input(line):
+    random_number = int(random.random() * 100)
+    
     if re.match("borat", line):
         print (random.choice(get_devopsborat())["text"])
-
+    if re.rematch("miley", line):
+        print (random.choice(get_mileycyrus())["text"])
     if re.match("tired", line):
         print (tired)
+
 
 
 def main():
