@@ -26,6 +26,10 @@ def get_mileycyrus():
 def process_input(line):
     random_number = int(random.random() * 100)
     
+    if random_number > 95:
+        print "Borat:" + (random.choice(get_devopsborat())["text"])
+    if random_number < 5:
+        print "Miley Ray" + (random.choice(get_mileycyrus())["text"])
     if re.match("borat", line):
         print (random.choice(get_devopsborat())["text"])
     if re.match("miley", line):
