@@ -5,11 +5,10 @@ import random
 import re
 import sys
 import json
-from xml.dom.minidom import parseString
 
-tired = "Grab a 5 hour energy!"
 
 def get_devopsborat():
+    """Returns tweets from Devops Borat."""
     conn = httplib.HTTPConnection("api.twitter.com")
     conn.request("GET", "/1/statuses/user_timeline.json?screen_name=devops_borat")
     r1 = conn.getresponse()
@@ -17,6 +16,7 @@ def get_devopsborat():
     return tweets
 
 def get_mileycyrus():
+    """Returns tweets from Miley Cyrus."""
     conn = httplib.HTTPConnection("api.twitter.com")
     conn.request("GET", "/1/statuses/user_timeline.json?screen_name=MileyCyrus")
     r1 = conn.getresponse()
@@ -24,6 +24,7 @@ def get_mileycyrus():
     return tweets
 
 def process_input(line):
+    """Sends tweet after name is given and after 1 in 25 lines."""
     random_number = int(random.random() * 100)
     
     if random_number > 98:
@@ -34,10 +35,6 @@ def process_input(line):
         print (random.choice(get_devopsborat())["text"])
     if re.match("miley", line):
         print (random.choice(get_mileycyrus())["text"])
-    if re.match("tired", line):
-        print (tired)
-
-
 
 def main():
     line = sys.argv[1]
